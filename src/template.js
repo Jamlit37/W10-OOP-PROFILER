@@ -1,3 +1,4 @@
+// Function to add template literals to team.html
 const generateTeam = team => {
   const generateManager = manager => {
     return `
@@ -48,7 +49,7 @@ const generateTeam = team => {
     </div>`
   }
 
-
+// Enters into the html the team array depending on what role was chosen
 const html = [];
 
 html.push(team
@@ -70,7 +71,7 @@ return html.join("");
 
 }
 
-// export function to generate entire page
+// Export function to generate entire page
 module.exports = team => {
 
 return `

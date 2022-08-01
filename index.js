@@ -1,3 +1,4 @@
+// Starting require links to other files as well as calling fs and inquirer
 const Manager = require("./lib/Manager.js");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
@@ -6,17 +7,20 @@ const fs = require("fs");
 const newFile = ('./dist/team.html')
 const generateTeam = require("./src/template.js")
 
-
+// Empty array
 teamArray = [];
 
+// Function for starting app
 const runApp = () => {
   const createTeam = () => {
+    // Initial prompt 
     inquirer.prompt([{
       type: "list",
       message: "Form your team! Who are we adding today?",
       name: "addEmployee",
       choices: ["Manager", "Engineer", "Intern", "Employee list completed"]
     }]).then(function (userInput) {
+      // Switch and case depending on what choice is made above ^^^
       switch (userInput.addEmployee) {
         case "Manager":
           createManager();
@@ -33,7 +37,7 @@ const runApp = () => {
       }
     })
   }
-
+  // Function to make manager object
   const createManager = () => {
     return inquirer.prompt([
       {
@@ -68,6 +72,7 @@ const runApp = () => {
       })
   };
 
+  // Function to make engineer object
   const addEngineer = () => {
     inquirer.prompt([
 
@@ -102,7 +107,8 @@ const runApp = () => {
         createTeam();
       });
   }
-
+ 
+  // Function to make intern object
   const addIntern = () => {
     inquirer.prompt([
 
@@ -136,6 +142,8 @@ const runApp = () => {
       createTeam();
     });
   }
+
+  // Creates the team.html using template.js
   const writeFile = () => {
     fs.writeFileSync(newFile, generateTeam(teamArray), err => {
       if (err) {
